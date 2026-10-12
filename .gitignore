@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+*.egg-info/
+dist/
+build/
+.venv/
+*.sqlite3
+*.sqlite3-*
+*.log
+*.mp4
+*.mkv
+*.part.*
+.DS_Store
