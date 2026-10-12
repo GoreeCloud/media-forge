@@ -60,5 +60,17 @@ class StoreTests(unittest.TestCase):
             self.assertEqual(JobStore(path).get(job['id'])['state'], 'interrupted')
 
 
+class RecoveryRegressionTests(unittest.TestCase):
+    def test_processing_job_recovery(self):
+        import sqlite3, json
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d, 'recover.sqlite3')
+            JobStore(path)
+            with sqlite3.connect(path) as db:
+                db.execute("INSERT INTO jobs(id,created_at,updated_at,state,plan_json,outputs_json) VALUES (?,?,?,?,?,?)",
+                           ('kept', 'x', 'x', 'processing', '{}', json.dumps([{'kind':'preserve'}])))
+            self.assertEqual(JobStore(path).get('kept')['state'], 'partial_success')
+
+
 if __name__ == '__main__':
     unittest.main()
