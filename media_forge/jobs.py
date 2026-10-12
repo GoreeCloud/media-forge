@@ -38,7 +38,10 @@ class JobStore:
                 state TEXT NOT NULL, stage TEXT, progress REAL NOT NULL DEFAULT 0,
                 plan_json TEXT NOT NULL, outputs_json TEXT NOT NULL DEFAULT '[]', error TEXT
             )""")
-            db.execute("UPDATE jobs SET state='interrupted', updated_at=? WHERE state IN ('running','verifying')", (utc_now(),))
+            db.execute("""UPDATE jobs SET
+                state=CASE WHEN outputs_json!='[]' THEN 'partial_success' ELSE 'interrupted' END,
+                stage='interrupted', updated_at=?
+                WHERE state IN ('running','processing','verifying')""", (utc_now(),))
 
     def submit(self, plan):
         plan = validate_plan(plan)
