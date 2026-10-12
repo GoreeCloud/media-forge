@@ -1,0 +1,23 @@
+# Proposed descriptor; NOT evidence of compliance with any approved platform contract.
+name: media-forge
+version: 0.1.0-dev
+repo_type: application
+product_family: media
+lifecycle: prototype
+platform: [linux, windows, macos]
+release_model: local-first-desktop
+owner_team: applications
+implementation_status: prototype
+platform_integrations:
+  glaze_ui: planned
+  privacy_shield: evaluation_required
+  wardveil_security: evaluation_required
+  everkeep: evaluation_required
+  goreecloud_manager: evaluation_required
+  goreecloud_mesh: evaluation_required
+  goreecloud_identity: evaluation_required
+  goreecloud_policy: evaluation_required
+  goreecloud_observability: evaluation_required
+notes: >-
+  This manifest is a planning placeholder. Validate against the latest authoritative
+  GoreeCloud nine-system machine-readable platform contract before any qualification claim.

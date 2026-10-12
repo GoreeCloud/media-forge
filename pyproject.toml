@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=65"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "goreecloud-media-forge-prototype"
+version = "0.1.0.dev0"
+description = "A local-first preservation and transcoding prototype for GoreeCloud Media Forge"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+include = ["media_forge*"]

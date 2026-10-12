@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>GoreeCloud Media Forge · Prototype</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <div class="brand"><div class="brandmark">MF</div><div><strong>Media Forge</strong><small>GOREECLOUD · PROTOTYPE</small></div></div>
+      <nav class="nav"><a href="#workspace" class="active">◈ <span>Workspace</span></a><a href="#jobs">≡ <span>Job Queue</span></a><a href="#information">ⓘ <span>Project Status</span></a></nav>
+      <div class="sidebar-bottom"><span class="status-dot"></span> Local-only processing<br><small>No cloud account required</small></div>
+    </aside>
+    <main>
+      <header class="topbar"><span>WORKSPACE <span class="crumb">/ NEW PROCESSING JOB</span></span><span class="tag">v0.1.0-dev</span></header>
+      <section id="workspace" class="intro"><span class="eyebrow">A BETTER WAY TO PRESERVE AND CONVERT</span><h1>One source. Every outcome.</h1><p>Preserve original streams without re-encoding, convert media to a compatible format, or create both outputs in one workflow.</p></section>
+      <section class="panel" aria-labelledby="source-title"><div class="panel-title"><div><span class="step">01</span><h2 id="source-title">Choose a source</h2></div><span class="mini-label">LOCAL MEDIA FILE</span></div>
+        <label for="source">Media file path</label><div class="input-combo"><input id="source" placeholder="/home/user/Videos/source.mkv" autocomplete="off"><button id="scan" class="secondary">Scan source</button></div>
+        <p class="hint">This prototype accepts an existing media file path, not full DVD/Blu-ray directories. Disc title scanning is planned for the MVP.</p>
+        <div id="source-result" class="source-result hidden" aria-live="polite"></div>
+      </section>
+      <section class="panel" aria-labelledby="mode-title"><div class="panel-title"><div><span class="step">02</span><h2 id="mode-title">Choose your workflow</h2></div><span class="mini-label">3 PROCESSING MODES</span></div>
+        <div class="mode-grid" role="radiogroup" aria-label="Processing workflow">
+          <label class="mode selected"><input type="radio" name="mode" value="preserve" checked><span class="mode-icon">◎</span><strong>Preserve</strong><span>Original streams</span><small>Remux to MKV · No video re-encoding</small></label>
+          <label class="mode"><input type="radio" name="mode" value="convert"><span class="mode-icon">◫</span><strong>Convert</strong><span>Smaller, compatible copies</span><small>H.264 + AAC · MP4 or MKV</small></label>
+          <label class="mode"><input type="radio" name="mode" value="both"><span class="mode-icon">◈</span><strong>Both</strong><span>Archive + optimized copy</span><small>Verified preservation, then conversion</small></label>
+        </div>
+        <div class="form-grid"><div><label for="output">Output directory</label><input id="output" placeholder="/home/user/Videos/Processed" autocomplete="off"><p class="hint">The directory must already exist. Files are never overwritten.</p></div><div><label for="preset">Conversion preset</label><select id="preset"><option value="balanced">Balanced · H.264</option><option value="archive-quality">High quality · H.264</option><option value="compact">Compact · H.264</option></select></div><div><label for="container">Converted file container</label><select id="container"><option value="mp4">MP4</option><option value="mkv">MKV</option></select></div></div>
+        <div class="action-row"><span id="action-status" role="status" aria-live="polite">Select a source and choose a workflow.</span><button id="queue" class="primary">Queue processing job →</button></div>
+      </section>
+      <section class="panel" id="jobs" aria-labelledby="jobs-title"><div class="panel-title"><div><span class="step">03</span><h2 id="jobs-title">Job queue</h2></div><button id="refresh" class="secondary small">Refresh</button></div><div id="jobs-list" aria-live="polite"><div class="empty-state">No jobs yet. Jobs remain in your local database across application restarts.</div></div></section>
+      <section class="disclaimer" id="information"><strong>Development prototype — not a finished disc ripping application.</strong><p>Includes real file remuxing and conversion through FFmpeg. Does not yet include disc navigation, protection handling, selectable tracks, native Glaze visual assets, or platform integration. Audio/video source metadata stays local.</p></section>
+      <footer>GoreeCloud Media Forge · Experimental engineering build · Local-first by design</footer>
+    </main>
+  </div>
+</body>
+</html>
